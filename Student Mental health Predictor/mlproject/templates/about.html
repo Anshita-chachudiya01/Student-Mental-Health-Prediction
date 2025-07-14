@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock title %}About
+
+{% block body %}
+
+<div class="about-section">
+    <h1>About Us</h1>
+    <p>
+        Welcome to the <strong>Student Mental Health Prediction</strong> project. We are dedicated to providing a data-driven solution that helps students, educators, and mental health professionals gain better insights into student mental health. Our system evaluates several aspects of student life—ranging from academic pressures to lifestyle habits—and generates a mental health prediction. The goal is to identify patterns and provide support to students who may be at risk of mental health issues.
+    </p>
+    <p>
+        Our mission is to empower institutions and students with data to address mental health challenges early on. We believe that mental health is not only about curing problems but also about creating a supportive environment where students can thrive both academically and personally. With this tool, we aim to make a positive impact on student well-being.
+    </p>
+</div>
+
+
+    
+
+
+<h2>Our Vision</h2>
+<div class="vision-section">
+    <p>
+        We envision a world where mental health is not stigmatized, and students can get the help they need when they need it. Through continuous improvements and research, we aim to refine our predictive models and expand our reach to more educational institutions, making student well-being a top priority.
+    </p>
+</div>
+
+<style>
+    /* About Section Styling */
+    .about-section {
+        background-color: #f3f4f7;
+        padding: 40px;
+        border-radius: 10px;
+        margin: 20px 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-section h1 {
+        font-size: 2.5em;
+        color: #0056b3;
+        margin-bottom: 20px;
+    }
+
+    .about-section p {
+        font-size: 1.2em;
+        color: #333;
+        line-height: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    /* Team Section Styling */
+    .team-section {
+        display: flex;
+        justify-content: space-around;
+        margin: 40px 0;
+    }
+
+    .team-member {
+        text-align: center;
+        width: 30%;
+    }
+
+    .team-member img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        margin-bottom: 15px;
+    }
+
+    .team-member h3 {
+        font-size: 1.4em;
+        color: #0056b3;
+        margin-bottom: 5px;
+    }
+
+    .team-member p {
+        font-size: 1.1em;
+        color: #666;
+    }
+
+    /* Vision Section Styling */
+    .vision-section {
+        background-color: #e7efff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .vision-section p {
+        font-size: 1.2em;
+        color: #333;
+        line-height: 1.8em;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .team-section {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .team-member {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    }
+</style>
+
+{% endblock body %}

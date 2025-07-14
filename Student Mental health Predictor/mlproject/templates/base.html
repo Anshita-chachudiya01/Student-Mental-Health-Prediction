@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f7;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .navbar .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar ul li {
+            margin-left: 20px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            color: #ffcc00;
+        }
+
+        /* Login and Signup buttons */
+        .navbar .auth-buttons button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            border: none;
+            background-color: #0056b3;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .navbar .auth-buttons button:hover {
+            background-color: #e6b800;
+        }
+
+        /* Responsive Navbar */
+        @media (max-width: 768px) {
+            .navbar ul {
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+            }
+
+            .navbar ul li {
+                margin-left: 10px;
+                font-size: 16px;
+            }
+
+            .navbar .auth-buttons {
+                width: 100%;
+                text-align: center;
+                margin-top: 10px;
+            }
+        }
+
+        /* Content styling */
+        .content {
+            padding: 40px;
+            text-align: center;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 20px;
+        }
+
+        .content h1 {
+            color: #0056b3;
+            font-size: 2.5em;
+        }
+
+        .content p {
+            font-size: 1.2em;
+            color: #333;
+            line-height: 1.8em;
+        }
+
+        /* Footer styling */
+        .footer {
+            background-color: #0056b3; /* Matching header color */
+            color: white;
+            padding: 30px 10px;
+            text-align: center;
+            margin-top: 40px;
+            border-top: 4px solid #ffcc00; /* Keeping yellow for a consistent highlight */
+        }
+
+        .footer .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer .footer-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .footer .footer-links a:hover {
+            color: #ffcc00; /* Yellow hover effect */
+        }
+
+        .footer .contact-info {
+            font-size: 14px;
+            color: #dcdcdc;
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            .footer .footer-links {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 10px;
+            }
+
+            .footer .footer-links a {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Mental Health Predictor</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/prediction">Prediction</a></li>
+            <li><a href="/about">About Us</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <a href="/login"> <button>Login</button></a>
+            <a href="/signup"> <button>Sign Up</button></a> 
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <h1>Welcome to Student Mental Health Prediction</h1>
+        <p>This website helps predict student mental health based on various factors like lifestyle, habits, and more. Explore the features and predict your mental health score.</p>
+    </div>
+
+    {% block body %}{% endblock body %}
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/prediction">Prediction</a>
+            <a href="/about">About Us</a>
+        </div>
+        <div class="contact-info">
+            <p>Email: contact@mentalhealthpredictor.com | Phone: +123 456 7890</p>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,358 @@
+{% extends "base.html" %}
+
+{% block title %}Prediction{% endblock title %}
+
+{% block body %}
+<style>
+    /* Container for form */
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f0f8ff; /* Light blue background */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    /* Styling the grid */
+    .form-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        align-items: center;
+    }
+
+    /* Styling form elements */
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        font-weight: bold;
+        color: #333;
+    }
+
+    select,
+    input[type="number"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        background-color: #fff;
+        color: #333;
+        margin-top: 5px;
+        transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+
+    select:focus,
+    input[type="number"]:focus {
+        border-color: #007bff;
+        background-color: #e6f7ff; /* Light blue on focus */
+        outline: none;
+    }
+
+    /* Button styling */
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff; /* Blue background */
+        border: none;
+        color: #fff;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        grid-column: 1 / 3; /* Span the button across both columns */
+    }
+
+    input[type="submit"]:hover {
+        background-color: #28a745; /* Green background on hover */
+        transform: scale(1.05); /* Slight scale effect on hover */
+    }
+
+    /* Title styling */
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+        font-family: 'Arial', sans-serif;
+        font-size: 26px;
+    }
+
+    /* Styling for output message */
+    .output-message {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 15px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 18px;
+        margin-top: 20px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+        .container {
+            padding: 10px;
+        }
+
+        .form-container {
+            grid-template-columns: 1fr; /* Switch to a single column on small screens */
+        }
+
+        input[type="submit"] {
+            font-size: 16px;
+        }
+
+        label {
+            font-size: 14px;
+        }
+    }
+</style>
+
+<div class="container">
+    <h1>Student Mental Health Prediction</h1>
+
+    {% if output %}
+        <div class="output-message">
+            Prediction Result: {{ output }}
+        </div>
+    {% endif %}
+
+    <form action="/prediction" method="POST" class="form-container">
+        {% csrf_token %}
+        
+        <!-- Gender Field -->
+        <div class="form-group">
+            <label for="gender">Gender</label>
+        </div>
+        <div class="form-group">
+            <select name="gender" id="gender">
+                <option value=" "></option>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+            </select>
+        </div>
+
+        <!-- Education Level Field -->
+        <div class="form-group">
+            <label for="education_level">Education Level</label>
+        </div>
+        <div class="form-group">
+            <select name="education_level" id="education_level">
+                <option value=" "></option>
+                <option value="1">School</option>
+                <option value="2">Under Graduation</option>
+                <option value="0">Post Graduation</option>
+            </select>
+        </div>
+
+        <!-- Yes/No Dropdown Questions -->
+        <div class="form-group">
+            <label for="depressed">Feeling down, depressed, or hopeless</label>
+        </div>
+        <div class="form-group">
+            <select name="depressed" id="depressed">
+                <option value=" "></option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="interest">Little interest or pleasure in doing things</label>
+        </div>
+        <div class="form-group">
+            <select name="interest" id="interest">
+                <option value=" "></option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="sleep">Are you having proper sleep (minimum 6 hrs daily)?</label>
+        </div>
+        <div class="form-group">
+            <select name="sleep" id="sleep">
+                <option value=" "></option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="energy">Feeling tired or having little energy</label>
+        </div>
+        <div class="form-group">
+            <select name="energy" id="energy">
+                <option value=" "></option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="meal">Taking proper meal or not</label>
+        </div>
+        <div class="form-group">
+            <select name="meal" id="meal">
+                <option value=" "></option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="failure">Feeling bad about yourself or that you are a failure</label>
+        </div>
+        <div class="form-group">
+            <select name="failure" id="failure">
+                <option value=" "></option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="concentration">Trouble concentrating on things</label>
+        </div>
+        <div class="form-group">
+            <select name="concentration" id="concentration">
+                <option value=" "></option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="restless">Moving or speaking slowly or restlessly</label>
+        </div>
+        <div class="form-group">
+            <select name="restless" id="restless">
+                <option value=" "></option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="self_harm">Thoughts of self-harm or being better off dead</label>
+        </div>
+        <div class="form-group">
+            <select name="self_harm" id="self_harm">
+                <option value=" "></option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="family">Do you live with your family?</label>
+        </div>
+        <div class="form-group">
+            <select name="family" id="family">
+                <option value=" "></option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="job">Do you have a part-time or full-time job?</label>
+        </div>
+        <div class="form-group">
+            <select name="job" id="job">
+                <option value=" "></option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+
+        <!-- Multiple Choice Questions (0 to 5) -->
+        <div class="form-group">
+            <label for="study_hours">How many hours do you spend studying each day?</label>
+        </div>
+        <div class="form-group">
+            <select name="study_hours" id="study_hours">
+                <option value=" "></option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="gadgets">How many hours do you spend on electronic gadgets daily?</label>
+        </div>
+        <div class="form-group">
+            <select name="gadgets" id="gadgets">
+                <option value=" "></option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="social_media">How many hours do you spend on social media per day?</label>
+        </div>
+        <div class="form-group">
+            <select name="social_media" id="social_media">
+                <option value=" "></option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="exercise">How many hours of physical activity or exercise weekly?</label>
+        </div>
+        <div class="form-group">
+            <select name="exercise" id="exercise">
+                <option value=" "></option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+
+        <!-- Substance Consumption -->
+        <div class="form-group">
+            <label for="substance">Do you consume substances (alcohol, tobacco, or drugs)?</label>
+        </div>
+        <div class="form-group">
+            <select name="substance" id="substance">
+                <option value=" "></option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+
+        <!-- Percentage Input -->
+        <div class="form-group">
+            <label for="percentage">Your Last Year Percentage</label>
+        </div>
+        <div class="form-group">
+            <input type="number" step="0.01" name="percentage" id="percentage" placeholder="Enter your percentage" required>
+        </div>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Predict Mental Health">
+    </form>
+</div>
+{% endblock body %}

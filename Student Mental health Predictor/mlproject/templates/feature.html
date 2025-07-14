@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stress Relief Games</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Header styling */
+        .header {
+            background-color: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        /* Game Section Styling */
+        .game-section {
+            padding: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .game-card {
+            background-color: white;
+            border-radius: 10px;
+            width: 250px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-card img {
+            width: 100%;
+            border-radius: 10px;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .game-card h3 {
+            margin-top: 15px;
+            font-size: 1.5em;
+            color: #007BFF;
+        }
+
+        .game-card p {
+            font-size: 1em;
+            color: #555;
+        }
+
+        /* Footer Styling */
+        .footer {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .game-card {
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Stress Relief Games</h1>
+        <p>Take a break and enjoy these relaxing games to refresh your mind.</p>
+    </div>
+
+    <!-- Game Cards Section -->
+    <div class="game-section">
+        <!-- Game 1: Puzzle -->
+        <div class="game-card" onclick="window.location.href='https://example.com/puzzle'">
+            <img src="https://via.placeholder.com/250x150?text=Puzzle+Game" alt="Puzzle Game">
+            <h3>Puzzle Game</h3>
+            <p>Sharpen your mind by solving relaxing puzzles.</p>
+        </div>
+
+        <!-- Game 2: Memory Match -->
+        <div class="game-card" onclick="window.location.href='https://example.com/memory-match'">
+            <img src="https://via.placeholder.com/250x150?text=Memory+Match" alt="Memory Match">
+            <h3>Memory Match</h3>
+            <p>Boost your memory by matching cards in this fun game.</p>
+        </div>
+
+        <!-- Game 3: Tic-Tac-Toe -->
+        <div class="game-card" onclick="window.location.href='https://example.com/tic-tac-toe'">
+            <img src="https://via.placeholder.com/250x150?text=Tic+Tac+Toe" alt="Tic Tac Toe">
+            <h3>Tic-Tac-Toe</h3>
+            <p>Play the classic Tic-Tac-Toe game with a friend or AI.</p>
+        </div>
+
+        <!-- Game 4: Word Search -->
+        <div class="game-card" onclick="window.location.href='https://example.com/word-search'">
+            <img src="https://via.placeholder.com/250x150?text=Word+Search" alt="Word Search">
+            <h3>Word Search</h3>
+            <p>Find hidden words and challenge your vocabulary.</p>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>&copy; 2024 Student Mental Health Project | All Rights Reserved</p>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+
+<!-- Add CSS Styling Directly in the Same File -->
+<style>
+    /* General Styling for the Home Page */
+    .content-section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 40px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-section {
+        flex: 1 1 300px;
+        padding: 20px;
+    }
+
+    .mental-health-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .text-section {
+        flex: 2 1 600px;
+        padding: 20px;
+        color: #333;
+    }
+
+    .text-section h1 {
+        font-size: 2.5em;
+        color: #0056b3;
+        margin-bottom: 20px;
+    }
+
+    .description {
+        font-size: 1.1em;
+        line-height: 1.8em;
+        margin-bottom: 20px;
+        color: #4a4a4a;
+    }
+
+    /* Adding some hover effects and better typography */
+    .text-section p:hover {
+        color: #006699;
+        transition: color 0.3s ease-in-out;
+    }
+
+    /* Make the layout responsive */
+    @media (max-width: 768px) {
+        .content-section {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .image-section, .text-section {
+            flex: 1 1 100%;
+            padding: 10px;
+        }
+
+        .text-section h1 {
+            font-size: 2em;
+        }
+    }
+</style>
+
+<!-- Main Content Section -->
+<div class="content-section">
+    <!-- Image Section -->
+    <div class="image-section">
+        <!-- Add the image URL or use Django's static image tag -->
+        {% comment %} <img src="{% static 'images/mental_health.jpg' %}" alt="Student Mental Health" class="mental-health-image"> {% endcomment %}
+    </div>
+
+    <!-- Text Section -->
+    <div class="text-section">
+        <h1>Student Mental Health Prediction</h1>
+
+        <p class="description">
+            Mental health is a crucial aspect of overall well-being, and students often face a unique set of challenges that can affect their mental health. With the increasing demands of academic performance, social pressures, and the ever-growing influence of technology, students today are more vulnerable than ever to mental health issues.
+        </p>
+
+        <p class="description">
+            This project, "Student Mental Health Prediction," is aimed at providing students, educators, and parents with insights into the mental health status of students based on a variety of factors. By analyzing key elements such as daily habits, social interactions, academic pressures, lifestyle choices, and other indicators, the system predicts the mental health category for students.
+        </p>
+
+        <p class="description">
+            This prediction system considers multiple questions that evaluate a student's mental health state. These include questions about their sleeping habits, feelings of hopelessness, lack of interest in daily activities, family and social environments, the presence of part-time or full-time jobs, substance use, and more.
+        </p>
+
+        <p class="description">
+            The prediction model can be a powerful tool for academic institutions, counselors, and mental health professionals to assess the mental health trends among students. With early detection and proper guidance, many of the mental health issues students face can be addressed in a timely manner, improving not only their mental state but also their academic and social success.
+        </p>
+
+        <p class="description">
+            We hope that by using this system, more students will feel empowered to reach out for help, and institutions will have a better understanding of the mental health dynamics within their student populations.
+        </p>
+    </div>
+</div>
+
+{% endblock body %}

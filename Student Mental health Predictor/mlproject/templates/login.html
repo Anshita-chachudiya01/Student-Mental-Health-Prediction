@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Login{% endblock title %}</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f7;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .navbar .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+        }
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+        .navbar ul li {
+            margin-left: 20px;
+        }
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        .navbar ul li a:hover {
+            color: #ffcc00;
+        }
+        .navbar .auth-buttons button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            border: none;
+            background-color: #0056b3;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .navbar .auth-buttons button:hover {
+            background-color: #e6b800;
+        }
+
+        /* Login form */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            background-color: #f3f4f7;
+        }
+
+        .login-form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-form h2 {
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-form label {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f3f4f7;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background-color: #0056b3;
+            color: white;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-form button:hover {
+            background-color: #004999;
+        }
+
+        .login-form .forgot-password {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .login-form .forgot-password a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        .login-form .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        /* Error message styling */
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #0056b3;
+            color: white;
+            padding: 30px 10px;
+            text-align: center;
+            margin-top: 40px;
+            border-top: 4px solid #ffcc00;
+        }
+
+        .footer .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer .footer-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .footer .footer-links a:hover {
+            color: #ffcc00;
+        }
+
+        .footer .contact-info {
+            font-size: 14px;
+            color: #dcdcdc;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Mental Health Predictor</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/prediction">Prediction</a></li>
+            <li><a href="/about">About Us</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <a href="/login"><button>Login</button></a>
+            <a href="/signup"><button>Sign Up</button></a>
+        </div>
+    </div>
+
+    <!-- Login Form Section -->
+    <div class="login-container">
+        <div class="login-form">
+            <h2>Login to Your Account</h2>
+            <form action="/login" method="POST">
+                {% csrf_token %}
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+
+                <!-- Error message display -->
+                {% if error %}
+                    <div class="error-message">{{ error }}</div>
+                {% endif %}
+
+                <button type="submit">Login</button>
+
+                <div class="forgot-password">
+                    <a href="/signup">Don't have an account? Create one</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/prediction">Prediction</a>
+            <a href="/about">About Us</a>
+        </div>
+        <div class="contact-info">
+            <p>Email: contact@mentalhealthpredictor.com | Phone: +123 456 7890</p>
+        </div>
+    </div>
+
+</body>
+</html>
